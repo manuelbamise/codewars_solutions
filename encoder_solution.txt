@@ -1,0 +1,36 @@
+Solution for an encoder problem written in golang..
+A string is taken as input.. and without considering capitalization if a character appears more than once it's place in the output string is ")" if not "("
+so 
+Success becomes = ")())())"
+ding becomes = "(((("
+Damian becomes = "()(()("
+
+
+
+//Code
+func duplicateEncode(word string) string {
+	word = strings.ToLower(word)
+	var b strings.Builder
+
+	for i := 0; i < len(word); i++ {
+
+		var count int
+
+		v1 := word[i]
+				for _, v2 := range word {
+			if v1 == byte(v2) {
+				count++
+			}
+		}
+
+		if count > 1 {
+			b.WriteString(")")
+		} else {
+			b.WriteString("(")
+		}
+
+	}
+	return b.String()
+}
+
+// This is the solution I was able to come up with, though there were others that achieved this in fewer line.. As I get more experienced with golang, I'll get better with implementation
