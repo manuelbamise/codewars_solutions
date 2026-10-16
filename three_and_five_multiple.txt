@@ -1,0 +1,18 @@
+The problem this time was to get the multiples of 5 and 3 up to a certain value and add them together.. if they're a multiple of both 5 and 3, then they should be counted once..
+
+
+
+//Code
+func multipleOfFiveAndThree(number int)int{
+
+var add int
+	for i := range number {
+		if (i%3 == 0) || (i%5 == 0) {
+			add += i
+		}
+	}
+	return int(add)
+        }
+        
+Though this wasn't the original implementation I came up with, I thought about this later after seeing the those of others.
+If mod 3, adds the value, if mod5 , adds the value, if both it only registers it once.. my previous implementation didn't account for that
