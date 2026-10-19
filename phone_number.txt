@@ -1,0 +1,29 @@
+The problem this time around was to create a phone number out of an array of uint, format it by adding some brackets space and a dash, and return it as a string
+
+
+
+// Code
+func createPhoneNumber(numbers [10]uint) string {
+	var newOutputString strings.Builder
+
+	newOutputString.WriteString("(")
+	for i, value := range numbers {
+		newOutputString.WriteString(strconv.FormatUint(uint64(value), 10))
+
+		if i == 2 {
+			newOutputString.WriteString(") ")
+		}
+
+		if i == 5 {
+			newOutputString.WriteString("-")
+		}
+	}
+	return newOutputString.String()
+}
+
+//Though I found a crazy solution,not needing the whole string conversion
+
+func createPhoneNumber(n [10]uint)string{
+        return fmt.Sprintf("(%d,%d,%d) %d%d%d-%d%d%d%d",n[0],n[1],n[2],n[3],n[4],n[5],n[6],n[7],n[8],n[9])
+
+either way.., I got my submission on the first try
