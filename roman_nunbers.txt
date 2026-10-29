@@ -1,0 +1,73 @@
+The problem this time around was simply to write a function that takes in a string of roman figures and return the int variant....
+
+
+This problem was only as difficult as my fundamental understanding of how roman figures worked...
+My thought process was completely flawed, and it took me around 5 days just to solve.
+
+
+I thought values could be picked two two.., meaning picking values next to each other , comparing them , then moving onto the next two...
+
+//CODE
+	 	for i := 0; i < len(roman); i += 2 {
+	 		fmt.Println(string(roman[i]))
+	 		// stringRoman := string(roman[i])
+	 		if figureMap[rune(roman[i])] >= figureMap[rune(roman[i+1])] {
+	 			output += figureMap[rune(roman[i])] + figureMap[rune(roman[i+1])]
+	
+	 		}
+	
+	 		if figureMap[rune(roman[i])] < figureMap[rune(roman[i+1])] {
+	 			output += figureMap[rune(roman[i+1])] - figureMap[rune(roman[i])]
+	
+	 		}
+}
+
+
+but that was the furthest thing from the correct implementation...
+
+
+Roman values work by comparing the current value to the next one.., if the current value is lower than the next value it is subtracted from the sumtotal.., if not, it is added.. By virtue of this logic, the last value is always added.
+
+
+//CODE
+func Decode(roman string) int {
+	figureMap := map[rune]int{
+		'I': 1,
+		'V': 5,
+		'X': 10,
+		'L': 50,
+		'C': 100,
+		'D': 500,
+		'M': 1000,
+	}
+	fmt.Println(figureMap)
+	var output int
+
+	for i := 0; i < len(roman); i++ {
+		if i+1 < len(roman) && figureMap[rune(roman[i])] < figureMap[rune(roman[i+1])] {
+			output -= figureMap[rune(roman[i])]
+		} else {
+			output += figureMap[rune(roman[i])]
+		}
+	}
+
+	//
+	// for i := 0; i < len(roman); i++ {
+	// 	if i < len(roman)-1 && figureMap[rune(roman[i])] < figureMap[rune(roman[i+1])] {
+	// 		output -= figureMap[rune(roman[i])]
+	// 	} else {
+	// 		output += figureMap[rune(roman[i])]
+	// 	}
+	// }
+
+	return output
+
+}
+
+I gained a lot from this.., I was able to put my thought process all on sheet and think through the solution.
+
+
+
+
+
+
